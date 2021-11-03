@@ -1,5 +1,7 @@
+import { LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import {TabViewModule} from 'primeng/components/tabview/tabview';
@@ -10,14 +12,21 @@ import {DataTableModule, SharedModule} from 'primeng/primeng';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+import { ClienteFormComponent } from './cliente-form/cliente-form.component';
+import { CampoColoridoDirective } from './campo-colorido.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     LancamentosPesquisaComponent,
-    NavbarComponent
+    NavbarComponent,
+    PessoasPesquisaComponent,
+    ClienteFormComponent,
+    CampoColoridoDirective
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     TabViewModule,
     InputTextModule,
@@ -26,7 +35,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     SharedModule,
     TooltipModule
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
