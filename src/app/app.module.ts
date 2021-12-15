@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -8,13 +9,15 @@ import {TabViewModule} from 'primeng/components/tabview/tabview';
 import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 import {ButtonModule} from 'primeng/components/button/button';
 // import {DataTableModule} from 'primeng/components/datatable/datatable';
-import {DataTableModule, SharedModule} from 'primeng/primeng';
+import {CalendarModule, DataTableModule, SelectButtonModule, SharedModule} from 'primeng/primeng';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { ClienteFormComponent } from './cliente-form/cliente-form.component';
 import { CampoColoridoDirective } from './campo-colorido.directive';
+import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { CampoColoridoDirective } from './campo-colorido.directive';
     NavbarComponent,
     PessoasPesquisaComponent,
     ClienteFormComponent,
-    CampoColoridoDirective
+    CampoColoridoDirective,
+    LancamentoCadastroComponent
   ],
   imports: [
     FormsModule,
@@ -33,7 +37,11 @@ import { CampoColoridoDirective } from './campo-colorido.directive';
     ButtonModule,
     DataTableModule,
     SharedModule,
-    TooltipModule
+    TooltipModule,
+    InputTextareaModule,
+    CalendarModule,
+    BrowserAnimationsModule,
+    SelectButtonModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
