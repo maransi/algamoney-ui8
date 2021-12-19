@@ -1,0 +1,32 @@
+<div class="container">
+  <form>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Cadastramento de Pessoa</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-12 ui-fluid">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" pInputText autocomplete="off">
+      </div>
+
+      <div class="ui-g-10 ui-md-7 ui-fluid">
+        <label for="cidade">Cidade</label>
+        <input type="text" name="cidade" id="cidade" pInputText autocomplete="off">
+      </div>
+
+
+      <div class="ui-g-2 ui-md-2 ui-fluid">
+        <label>Estado {{ estado.value }}</label>
+        <p-dropdown [options]="estados"
+                    [autoWidth]="false"
+                    [placeholder]="Selecione"
+                    [filter]="true"
+                    #estado></p-dropdown>
+      </div>
+      <div class="ui-g-1 ui-md-2 ui-fluid" style="padding: 25px;">
+        <p-checkbox name="status" id="status" value="ATIVO" label="Ativo"></p-checkbox>
+      </div>
+    </div>
+  </form>
+</div>

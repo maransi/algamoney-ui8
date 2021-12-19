@@ -36,3 +36,13 @@ a{
   color: #337ab7;
   text-decoration: none;
 }
+
+.ui-dropdown-filter-container{
+  width: 100%;
+}
+
+input[type=checkbox], input[type=radio] {
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
+}

@@ -9,7 +9,7 @@ import {TabViewModule} from 'primeng/components/tabview/tabview';
 import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 import {ButtonModule} from 'primeng/components/button/button';
 // import {DataTableModule} from 'primeng/components/datatable/datatable';
-import {CalendarModule, DataTableModule, SelectButtonModule, SharedModule} from 'primeng/primeng';
+import {CalendarModule, CheckboxModule, DataTableModule, DropdownModule, SelectButtonModule, SharedModule} from 'primeng/primeng';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -18,6 +18,8 @@ import { ClienteFormComponent } from './cliente-form/cliente-form.component';
 import { CampoColoridoDirective } from './campo-colorido.directive';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtexta
     PessoasPesquisaComponent,
     ClienteFormComponent,
     CampoColoridoDirective,
-    LancamentoCadastroComponent
+    LancamentoCadastroComponent,
+    PessoaCadastroComponent
   ],
   imports: [
     FormsModule,
@@ -41,7 +44,11 @@ import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtexta
     InputTextareaModule,
     CalendarModule,
     BrowserAnimationsModule,
-    SelectButtonModule
+    SelectButtonModule,
+    DropdownModule,
+    CurrencyMaskModule,
+    CheckboxModule
+
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]

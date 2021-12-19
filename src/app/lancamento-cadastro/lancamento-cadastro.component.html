@@ -26,19 +26,31 @@
 
           <div class="ui-g-12 ui-md-3 ui-fluid">
               <label>Valor</label>
-              <input type="text" pInputText placeholder="0,00">
+              <input type="text"
+                      pInputText
+                      placeholder="0,00"
+                      currencyMask
+                      [options]="{ prefix: 'R$', thousands: '.', decimal: ',', allowNegative: false}">
           </div>
           <div class="ui-g-12 ui-md-6 ui-fluid">
-              <label>Categoria</label>
-              <input type="text" pInputText>
+              <label>Categoria {{ categoria.value }}</label>
+              <p-dropdown [options]="categorias"
+                          [autoWidth]="false"
+                          [placeholder]="Selecione"
+                          [filter]="true"
+                          #categoria></p-dropdown>
           </div>
           <div class="ui-g-12 ui-md-6 ui-fluid">
-              <label>Pessoa</label>
-              <input type="text" pInputText>
+              <label>Pessoa {{pessoa.value}}</label>
+              <p-dropdown  [options]="pessoas"
+                            [autoWidth]="false"
+                            [placeholder]="Selecione"
+                            [filter]="true"
+                            #pessoa></p-dropdown>
           </div>
           <div class="ui-g-12 ui-fluid">
               <label>Observação</label>
-              <textarea  pInputTextArea row="3 "></textarea>
+              <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
           </div>
           <div class="ui-g-12">
               <button pButton type="submit" label="Salvar"></button>
