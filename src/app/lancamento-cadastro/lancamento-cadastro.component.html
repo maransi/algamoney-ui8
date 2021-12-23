@@ -11,7 +11,17 @@
 
           <div class="ui-g-6 ui-md-3 ui-fluid">
               <label>Vencimento</label>
-              <p-calendar dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
+              <p-calendar dateFormat="dd/mm/yy"
+                          [showIcon]="true"
+                          name="vencimento"
+                          id="vencimento"
+                          ngModel
+                          #vencimento="ngModel"
+                          required></p-calendar>
+
+              <app-message [control]="vencimento"
+                           error="required"
+                           text="Informe uma data válida"></app-message>
           </div>
 
           <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -20,16 +30,41 @@
           </div>
 
           <div class="ui-g-12 ui-md-9 ui-fluid">
-              <label>Descrição</label>
-              <input type="text" pInputText>
-          </div>
+              <label>Descrição </label>
+              <input type="text"
+                    name="descricao"
+                    ngModel
+                    #descricao="ngModel"
+                    required
+                    minlength="5"
+                    autocomplete="off"
+                    pInputText>
 
+                <app-message [control]="descricao"
+                              error="required"
+                              text="Informe uma descrição válida"></app-message>
+
+                <app-message [control]="descricao"
+                              error="minlength"
+                              text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>
+<!--
+              <div class="ui-message ui-messages-error" *ngIf="descricao.hasError('required') && descricao.dirty">
+                Informe uma descrição válida
+              </div>
+
+              <div class="ui-message ui-messages-error" *ngIf="descricao.hasError('minlength') && descricao.dirty">
+                Tamanho mínimo da descrição deve ser de {{ descricao.errors.minlength.requiredLength }} caracteres
+              </div>
+-->
+          </div>
           <div class="ui-g-12 ui-md-3 ui-fluid">
               <label>Valor</label>
               <input type="text"
                       pInputText
                       placeholder="0,00"
                       currencyMask
+                      ngModel
+                      name="valor"
                       [options]="{ prefix: 'R$', thousands: '.', decimal: ',', allowNegative: false}">
           </div>
           <div class="ui-g-12 ui-md-6 ui-fluid">
