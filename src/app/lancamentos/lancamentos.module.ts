@@ -1,10 +1,10 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LOCALE_ID } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
+import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { FormsModule } from '@angular/forms';
-
-import { AppComponent } from './app.component';
 import {TabViewModule} from 'primeng/components/tabview/tabview';
 import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 import {ButtonModule} from 'primeng/components/button/button';
@@ -12,33 +12,20 @@ import {ButtonModule} from 'primeng/components/button/button';
 import {CalendarModule, CheckboxModule, DataTableModule, DropdownModule, SelectButtonModule} from 'primeng/primeng';
 import { InputMaskModule} from 'primeng/primeng';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
-import { NavbarComponent } from './navbar/navbar.component';
-import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
-import { ClienteFormComponent } from './cliente-form/cliente-form.component';
-import { CampoColoridoDirective } from './campo-colorido.directive';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
-import { LancamentosModule } from './lancamentos/lancamentos.module';
-import { SharedModule } from './shared/shared.module';
+import { AppModule } from 'app/app.module';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    PessoasPesquisaComponent,
-    ClienteFormComponent,
-    CampoColoridoDirective,
-    PessoaCadastroComponent
-  ],
   imports: [
+    CommonModule,
     FormsModule,
-    BrowserModule,
     TabViewModule,
     InputTextModule,
     ButtonModule,
     DataTableModule,
-    SharedModule,
+//    SharedModule,
     TooltipModule,
     InputTextareaModule,
     CalendarModule,
@@ -48,12 +35,16 @@ import { SharedModule } from './shared/shared.module';
     CurrencyMaskModule,
     CheckboxModule,
     InputMaskModule,
-    LancamentosModule,
     SharedModule
-
-
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
-  bootstrap: [AppComponent]
+  declarations: [
+    LancamentoCadastroComponent,
+    LancamentosPesquisaComponent,
+    LancamentosGridComponent
+  ],
+  exports: [
+    LancamentoCadastroComponent,
+    LancamentosPesquisaComponent
+  ]
 })
-export class AppModule { }
+export class LancamentosModule { }
