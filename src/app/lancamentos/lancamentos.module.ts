@@ -25,7 +25,6 @@ import { SharedModule } from 'app/shared/shared.module';
     InputTextModule,
     ButtonModule,
     DataTableModule,
-//    SharedModule,
     TooltipModule,
     InputTextareaModule,
     CalendarModule,

@@ -12,24 +12,20 @@ import {ButtonModule} from 'primeng/components/button/button';
 import {CalendarModule, CheckboxModule, DataTableModule, DropdownModule, SelectButtonModule} from 'primeng/primeng';
 import { InputMaskModule} from 'primeng/primeng';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
-import { NavbarComponent } from './navbar/navbar.component';
-import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { ClienteFormComponent } from './cliente-form/cliente-form.component';
 import { CampoColoridoDirective } from './campo-colorido.directive';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { SharedModule } from './shared/shared.module';
+import { PessoasModule } from './pessoas/pessoas.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    PessoasPesquisaComponent,
     ClienteFormComponent,
     CampoColoridoDirective,
-    PessoaCadastroComponent
   ],
   imports: [
     FormsModule,
@@ -49,7 +45,9 @@ import { SharedModule } from './shared/shared.module';
     CheckboxModule,
     InputMaskModule,
     LancamentosModule,
-    SharedModule
+    SharedModule,
+    PessoasModule,
+    CoreModule
 
 
   ],
