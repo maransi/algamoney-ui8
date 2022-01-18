@@ -20,6 +20,8 @@ import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { SharedModule } from './shared/shared.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 import { CoreModule } from './core/core.module';
+import { HttpModule } from '@angular/http';
+import { LancamentoService } from './lancamentos/lancamento.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { CoreModule } from './core/core.module';
     LancamentosModule,
     SharedModule,
     PessoasModule,
-    CoreModule
+    CoreModule,
+    HttpModule
 
 
   ],

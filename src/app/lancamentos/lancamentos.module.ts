@@ -16,6 +16,9 @@ import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtexta
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { AppModule } from 'app/app.module';
 import { SharedModule } from 'app/shared/shared.module';
+import { LancamentoService } from './lancamento.service';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -34,7 +37,9 @@ import { SharedModule } from 'app/shared/shared.module';
     CurrencyMaskModule,
     CheckboxModule,
     InputMaskModule,
-    SharedModule
+    SharedModule,
+    HttpModule,
+    HttpClientModule
   ],
   declarations: [
     LancamentoCadastroComponent,
@@ -44,6 +49,7 @@ import { SharedModule } from 'app/shared/shared.module';
   exports: [
     LancamentoCadastroComponent,
     LancamentosPesquisaComponent
-  ]
+  ],
+  providers: [LancamentoService]
 })
 export class LancamentosModule { }
