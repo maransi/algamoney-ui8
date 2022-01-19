@@ -1,43 +1,41 @@
 <div class="container">
-  <div class="ui-g">
-    <div class="ui-g-12">
-      <h1>Pessoas</h1>
-    </div>
+  <form autocomplete="off"
+        (ngSubmit) = "pesquisar()">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Pessoas</h1>
+      </div>
 
-    <div class="ui-g-12 ui-fluid">
-      <label>Nome</label>
-      <input type="text"
-              pInputText
-              id="descricao"
-              class="p-inputtext-sm">
-    </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input type="text"
+                pInputText
+                id="nome"
+                class="p-inputtext-sm"
+                name="nome"
+                [(ngModel)]="filtro.nome">
+      </div>
 
-    <div class="ui-g-12">
-      <label style="display: block;">Vencimento</label>
-      <input type="text"
-              pInputText
-              class="p-inputtext-sm"
-              style="width: 95px;">
-      <label>Até</label>
-      <input type="text"
-              pInputText
-              class="p-inputtext-sm"
-              style="width: 95px;" >
+      <div class="ui-g-12">
+        <button pButton
+                type="submit"
+                label="Pesquisar"
+                class="p-button-sm"></button>
+      </div>
     </div>
+  </form>
+</div>
 
-    <div class="ui-g-12">
-      <button pButton
-              type="submit"
-              label="Pesquisar"
-              class="p-button-sm"></button>
-    </div>
-  </div>
-
+<div class="container">
   <div class="ui-g-12">
     <p-dataTable [value]="pessoas"
                 [paginator]=true
-                [rows]="5"
-                [responsive]=true>
+                [rows]="filtro.itensPorPagina"
+                [responsive]=true
+                emptyMessage = "Nenhum registro encontrado"
+                [lazy]=true
+                [totalRecords]="totalRegistros"
+                (onLazyLoad) = "aoMudarPagina( $event )">
       <p-column field="nome" header="Nome" ></p-column>
       <p-column field="cidade" header="Cidade"></p-column>
       <p-column field="estado" header="Estado"></p-column>
@@ -57,10 +55,4 @@
             type="submit"
             label="Nova Pessoa"></button>
   </div>
-
-
-
-
-
-
 </div>

@@ -12,7 +12,7 @@ export class LancamentoFiltro{
   dataVencimentoFim: Date;
 
   pagina = 0;
-  itensPorPagina = 3;
+  itensPorPagina = 5;
 }
 
 

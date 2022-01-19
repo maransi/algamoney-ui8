@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Pessoa } from 'app/domain/pessoa';
+import { PessoaFiltro, PessoaService } from '../pessoa.service';
+import { LazyLoadEvent } from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -8,22 +10,32 @@ import { Pessoa } from 'app/domain/pessoa';
 })
 export class PessoasPesquisaComponent implements OnInit {
 
-  pessoas: any[] ;
+  pessoas: Pessoa[] ;
 
-  constructor() { }
+  totalRegistros = 0;
+
+  filtro = new PessoaFiltro();
+
+  constructor(@Inject( PessoaService ) private pessoaService) { }
 
   ngOnInit() {
-    this.pessoas = [
-        {nome: 'MARCO ANTONIO DA SILVA', cidade: 'SAO PAULO', estado: 'SP', status: 'ATIVO' },
-        {nome: 'CATIA LOUISE F R SILVA', cidade: 'MURITIBA', estado: 'BAHIA', status: 'ATIVO'},
-        {nome: 'GUSTAVO ROCHA DA SILVA', cidade: 'SAO PAULO', estado: 'SP', status: 'ATIVO'},
-        {nome: 'JOSE DA SILVA', cidade: 'RECIFE', estado: 'PB', status: 'INATIVO'},
-        {nome: 'JOAO DA SILVA', cidade: 'PORTO SEGURO', estado: 'BA', status: 'INATIVO'},
-        {nome: 'MARIA DA SILVA', cidade: 'BELO HORIZONTE', estado: 'MG', status: 'ATIVO'},
-        {nome: 'MARIA JOSE GUIMARAES', cidade: 'PORTO ALEGRE', estado: 'RS', status: 'INATIVO'},
-    ]
+  }
 
+  pesquisar( pagina = 0 ){
+    this.filtro.pagina = pagina;
 
+    this.pessoaService
+          .pesquisar( this.filtro )
+          .then( resultado => {
+            this.totalRegistros = resultado.total;
+            this.pessoas = resultado.pessoas;
+          });
+  }
 
+  aoMudarPagina( event: LazyLoadEvent ){
+    const pagina = event.first / event.rows;
+
+    this.pesquisar( pagina );
   }
 }
+

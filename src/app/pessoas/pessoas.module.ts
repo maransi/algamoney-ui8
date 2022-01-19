@@ -8,6 +8,8 @@ import { InputTextareaModule, InputTextModule, SelectButtonModule, TabViewModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from 'app/shared/shared.module';
+import { PessoaService } from './pessoa.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   imports: [
@@ -26,7 +28,8 @@ import { SharedModule } from 'app/shared/shared.module';
     CurrencyMaskModule,
     CheckboxModule,
     InputMaskModule,
-    SharedModule
+    SharedModule,
+    HttpModule
   ],
   declarations: [
     PessoaCadastroComponent,
@@ -35,6 +38,7 @@ import { SharedModule } from 'app/shared/shared.module';
   exports: [
     PessoaCadastroComponent,
     PessoasPesquisaComponent
-  ]
+  ],
+  providers: [PessoaService]
 })
 export class PessoasModule { }
