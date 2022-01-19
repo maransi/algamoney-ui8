@@ -12,10 +12,9 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   lancamentos: Lancamento[];
   lancamentosObs: Observable<Lancamento[]>;
-  descricao: string;
-  dataVencimentoInicio: Date;
-  dataVencimentoFim: Date;
 
+  filtro = new LancamentoFiltro();
+  
   constructor( @Inject(LancamentoService) private lancamentoService){}
 
   ngOnInit(): void {
@@ -23,21 +22,15 @@ export class LancamentosPesquisaComponent implements OnInit {
   }
 
   pesquisar(){
-    const filtro: LancamentoFiltro = {
-      descricao: this.descricao,
-      dataVencimentoInicio: this.dataVencimentoInicio,
-      dataVencimentoFim: this.dataVencimentoFim
-    };
-
-
     this.lancamentosObs = this.lancamentoService
           .pesquisarLancamentoObs();
 
 
     this.lancamentoService
-          .pesquisar( filtro )
-          .then( lancamentos => this.lancamentos = lancamentos );
-
+          .pesquisar( this.filtro )
+          .then( resultado => {
+            this.lancamentos = resultado.lancamentos
+          });
   }
 
 
