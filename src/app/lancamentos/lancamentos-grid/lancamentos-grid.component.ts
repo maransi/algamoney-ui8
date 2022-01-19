@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { LancamentoFiltro } from '../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-grid',
@@ -9,9 +10,12 @@ export class LancamentosGridComponent implements OnInit {
 
   @Input() lancamentos = [];
 
+  @Input() filtro: LancamentoFiltro;
+
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }
