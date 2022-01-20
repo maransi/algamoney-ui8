@@ -48,13 +48,15 @@
                   emptyMessage = "Nenhum registro encontrado"
                   [lazy] = true
                   [totalRecords] = "totalRegistros"
-                  (onLazyLoad) = "aoMudarPagina( $event )">
+                  (onLazyLoad) = "aoMudarPagina( $event )"
+                  #tabela>
 
       <p-column field="pessoa" header="Pessoa"></p-column>
       <p-column field="descricao" header="Descrição"></p-column>
       <p-column field="dataVencimento" header="Vencimento" styleClass="col-data">
 
-        <ng-template let-lanc="rowData" pTemplate="body">
+        <ng-template let-lanc="rowData" 
+                      pTemplate="body">
           {{lanc.dataVencimento | date:'dd/MM/y'}}
         </ng-template>
 
@@ -72,9 +74,13 @@
           </ng-template>
       </p-column>
       <p-column styleClass="col-acoes">
-        <ng-template pTemplate="body">
+        <ng-template pTemplate="body"
+                    let-lanc="rowData">
           <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-          <a pButton icon="fa-trash"  pTooltip="Eliminar" tooltipPosition="top"></a>
+          <a pButton icon="fa-trash"  
+                      pTooltip="Eliminar" 
+                      tooltipPosition="top"
+                      (click)="excluir(lanc)"></a>
         </ng-template>
       </p-column>
     </p-dataTable>
