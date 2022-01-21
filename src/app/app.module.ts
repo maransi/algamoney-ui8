@@ -9,7 +9,7 @@ import {TabViewModule} from 'primeng/components/tabview/tabview';
 import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 import {ButtonModule} from 'primeng/components/button/button';
 // import {DataTableModule} from 'primeng/components/datatable/datatable';
-import {CalendarModule, CheckboxModule, DataTableModule, DropdownModule, SelectButtonModule} from 'primeng/primeng';
+import {CalendarModule, CheckboxModule, ConfirmationService, ConfirmDialogModule, DataTableModule, DropdownModule, SelectButtonModule} from 'primeng/primeng';
 import { InputMaskModule} from 'primeng/primeng';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
 import { ClienteFormComponent } from './cliente-form/cliente-form.component';
@@ -52,11 +52,12 @@ import { ToastyModule } from 'ng2-toasty';
     PessoasModule,
     CoreModule,
     HttpModule,
-    ToastyModule.forRoot()
-
-
+    ToastyModule.forRoot(),
+    ConfirmDialogModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
+  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'},
+              ConfirmationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

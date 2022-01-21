@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Lancamento } from 'app/domain/lancamento';
 import { Observable } from 'rxjs/Observable';
 import { LancamentoFiltro, LancamentoService } from '../lancamento.service';
-import { LazyLoadEvent } from 'primeng/components/common/api';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/components/common/api';
 import { ToastyService } from 'ng2-toasty';
 
 @Component({
@@ -22,7 +22,8 @@ export class LancamentosPesquisaComponent implements OnInit {
   @ViewChild('tabela') grid;
   
   constructor( @Inject(LancamentoService) private lancamentoService,
-                  @Inject(ToastyService) private toasty ){}
+                  @Inject(ToastyService) private toasty,
+                  @Inject(ConfirmationService) private confirmationService ){}
 
   ngOnInit(): void {
   }
@@ -61,6 +62,15 @@ export class LancamentosPesquisaComponent implements OnInit {
 
         this.toasty.success("Lançamento excluido com sucesso!!");
       });
+  }
+
+  confirmarExclusao( lancamento: any ){
+    this.confirmationService.confirm({
+      message: "Tem certeza que deseja excluir?",
+      accept: () => {
+        this.excluir( lancamento );
+      }
+    });
   }
 
 }
