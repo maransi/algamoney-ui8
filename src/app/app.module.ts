@@ -22,7 +22,7 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { CoreModule } from './core/core.module';
 import { HttpModule } from '@angular/http';
 import { LancamentoService } from './lancamentos/lancamento.service';
-import { ToastyModule } from 'ng2-toasty';
+// import { ToastyModule } from 'ng2-toasty';
 
 @NgModule({
   declarations: [
@@ -51,12 +51,9 @@ import { ToastyModule } from 'ng2-toasty';
     SharedModule,
     PessoasModule,
     CoreModule,
-    HttpModule,
-    ToastyModule.forRoot(),
-    ConfirmDialogModule
+    HttpModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'},
-              ConfirmationService
+  providers: [
   ],
   bootstrap: [AppComponent]
 })
