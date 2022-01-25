@@ -19,6 +19,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { LancamentoService } from './lancamento.service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoriaService } from './categoria/categoria.service';
 
 @NgModule({
   imports: [
@@ -50,6 +51,6 @@ import { HttpClientModule } from '@angular/common/http';
     LancamentoCadastroComponent,
     LancamentosPesquisaComponent
   ],
-  providers: [LancamentoService]
+  providers: [LancamentoService, CategoriaService]
 })
 export class LancamentosModule { }

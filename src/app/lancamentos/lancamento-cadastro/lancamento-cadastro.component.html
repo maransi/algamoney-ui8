@@ -69,8 +69,11 @@
               <label>Categoria {{ categoria.value }}</label>
               <p-dropdown [options]="categorias"
                           [autoWidth]="false"
-                          [placeholder]="Selecione"
+                          placeholder="Selecione"
                           [filter]="true"
+                          ngModel
+                          name="categoria"
+                          required
                           #categoria></p-dropdown>
           </div>
           <div class="ui-g-12 ui-md-6 ui-fluid">
