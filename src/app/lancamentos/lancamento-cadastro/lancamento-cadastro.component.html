@@ -80,9 +80,12 @@
               <label>Pessoa {{pessoa.value}}</label>
               <p-dropdown  [options]="pessoas"
                             [autoWidth]="false"
-                            [placeholder]="Selecione"
+                            placeholder="Selecione"
                             [filter]="true"
-                            #pessoa></p-dropdown>
+                            #pessoa
+                            ngModel
+                            name="pessoa"
+                            required></p-dropdown>
           </div>
           <div class="ui-g-12 ui-fluid">
               <label>Observação</label>

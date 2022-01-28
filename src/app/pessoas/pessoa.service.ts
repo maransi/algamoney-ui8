@@ -51,4 +51,20 @@ export class PessoaService {
                     });
   }
 
+  listarTodas(): Promise<any>{
+    const headers = new Headers();
+
+    headers.append("Authorization", "Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==")
+
+
+    return this.http.get(this.pessoaUrl, { headers })
+              .toPromise()
+              .then( response => {
+                                    const responseJson = response.json()
+                                    const pessoas = responseJson.content;
+
+                                    return pessoas;
+              });
+  }
+
 }
