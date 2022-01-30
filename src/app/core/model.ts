@@ -1,10 +1,5 @@
 export class Pessoa{
     codigo: number;
-
-}
-
-export class Categoria{
-    codigo: number;
     nome: string;
     logradouro: string;
     numero: number;
@@ -14,7 +9,10 @@ export class Categoria{
     cidade: string;
     estado: string;
     ativo: number;
+}    
 
+export class Categoria{
+    codigo: number;
 }
 
 export class Lancamento{
