@@ -1,5 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
+import { Lancamento } from 'app/core/model';
 import { PessoaService } from 'app/pessoas/pessoa.service';
 import { CategoriaService } from '../categoria/categoria.service';
 
@@ -16,6 +18,8 @@ export class LancamentoCadastroComponent implements OnInit {
   categorias = [];
 
   pessoas = [];
+
+  lancamento = new Lancamento();
 
   constructor( @Inject( CategoriaService) private categoriaService,
                 @Inject(PessoaService) private pessoaService,
@@ -45,6 +49,10 @@ export class LancamentoCadastroComponent implements OnInit {
           }
         )
         .catch( erro => this.errorHandler.handle(erro));
+  }
+
+  salvar( form: FormControl){
+    console.log( this.lancamento );
   }
 
 }

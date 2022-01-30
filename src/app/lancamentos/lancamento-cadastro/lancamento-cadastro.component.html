@@ -1,40 +1,51 @@
 <div class="container">
-  <form>
-      <div class="ui-g">
-          <div class="ui-g-12">
-              <h1>Novo Lançamento</h1>
-          </div>
+    <form #f="ngForm"
+        autocomplete="off"
+        (ngSubmit)="salvar(f)">
 
-          <div class="ui-g-12">
-            <p-selectButton [options]="tipos" #tipo></p-selectButton>
-          </div>
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h1>Novo Lançamento</h1>
+             </div>
 
-          <div class="ui-g-6 ui-md-3 ui-fluid">
-              <label>Vencimento</label>
-              <p-calendar dateFormat="dd/mm/yy"
-                          [showIcon]="true"
-                          name="vencimento"
-                          id="vencimento"
-                          ngModel
-                          #vencimento="ngModel"
-                          required></p-calendar>
-              <app-message [control]="vencimento"
-                           error="required"
-                           text="Informe uma data válida"></app-message>
-          </div>
+            <div class="ui-g-12">
+                <p-selectButton [options]="tipos" 
+                                #tipo
+                                name="tipo"
+                                [(ngModel)]="lancamento.tipo"></p-selectButton>
+            </div>
 
-          <div class="ui-g-6 ui-md-3 ui-fluid">
-              <label>{{ tipo.value == 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
-              <p-calendar dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
-          </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>Vencimento</label>
+                <p-calendar dateFormat="dd/mm/yy"
+                            [showIcon]="true"
+                            name="vencimento"
+                            id="vencimento"
+                            [(ngModel)]="lancamento.dataVencimento"
+                            #vencimento="ngModel"
+                            required></p-calendar>
+                <app-message [control]="vencimento"
+                            error="required"
+                            text="Informe uma data válida"></app-message>
+            </div>
 
-          <div class="ui-g-12 ui-md-9 ui-fluid">
-              <label>Descrição </label>
-              <input type="text"
-                    name="descricao"
-                    ngModel
-                    #descricao="ngModel"
-                    required
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>{{ tipo.value == 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
+                <p-calendar dateFormat="dd/mm/yy" 
+                            [showIcon]="true"
+                            name="pagamento"
+                            id="pagamento"
+                            [(ngModel)]="lancamento.dataPagamento"
+                            #pagamento="ngModel"></p-calendar>
+            </div>
+
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <label>Descrição </label>
+                <input type="text"
+                        name="descricao"
+                        [(ngModel)]="lancamento.descricao"
+                        #descricao="ngModel"
+                        required
                     minlength="5"
                     autocomplete="off"
                     pInputText>
@@ -54,49 +65,55 @@
                 Tamanho mínimo da descrição deve ser de {{ descricao.errors.minlength.requiredLength }} caracteres
               </div>
 -->
-          </div>
-          <div class="ui-g-12 ui-md-3 ui-fluid">
-              <label>Valor</label>
-              <input type="text"
+            </div>
+            <div class="ui-g-12 ui-md-3 ui-fluid">
+                <label>Valor</label>
+                <input type="text"
                       pInputText
                       placeholder="0,00"
                       currencyMask
-                      ngModel
+                      [(ngModel)]="lancamento.valor"
                       name="valor"
                       [options]="{ prefix: 'R$', thousands: '.', decimal: ',', allowNegative: false}">
-          </div>
-          <div class="ui-g-12 ui-md-6 ui-fluid">
-              <label>Categoria {{ categoria.value }}</label>
-              <p-dropdown [options]="categorias"
-                          [autoWidth]="false"
-                          placeholder="Selecione"
-                          [filter]="true"
-                          ngModel
-                          name="categoria"
-                          required
-                          #categoria></p-dropdown>
-          </div>
-          <div class="ui-g-12 ui-md-6 ui-fluid">
-              <label>Pessoa {{pessoa.value}}</label>
-              <p-dropdown  [options]="pessoas"
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-fluid">
+                <label>Categoria {{ categoria.value }}</label>
+                <p-dropdown [options]="categorias"
+                            [autoWidth]="false"
+                            placeholder="Selecione"
+                            [filter]="true"
+                            [(ngModel)]="lancamento.categoria.codigo"
+                            name="categoria"
+                            required
+                            #categoria></p-dropdown>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-fluid">
+                <label>Pessoa {{pessoa.value}}</label>
+                <p-dropdown  [options]="pessoas"
                             [autoWidth]="false"
                             placeholder="Selecione"
                             [filter]="true"
                             #pessoa
-                            ngModel
+                            [(ngModel)]="lancamento.pessoa.codigo"
                             name="pessoa"
                             required></p-dropdown>
-          </div>
-          <div class="ui-g-12 ui-fluid">
-              <label>Observação</label>
-              <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
-          </div>
-          <div class="ui-g-12">
-              <button pButton type="submit" label="Salvar"></button>
-              <button pButton type="button" label="Novo" class="ui-button-info"></button>
-              <a href="javascrip:;">Voltar para a pesquisa</a>
-          </div>
-      </div>
-  </form>
+            </div>
+
+            <div class="ui-g-12 ui-fluid">
+                <label>Observação</label>
+                 <textarea pInputTextarea 
+                        rows="3" 
+                        cols="30"
+                        name="observacao"
+                        autoResize="autoResize"
+                        [(ngModel)]="lancamento.observacao"></textarea>              
+            </div>
+            <div class="ui-g-12">
+                <button pButton type="submit" label="Salvar"></button>
+                <button pButton type="button" label="Novo" class="ui-button-info"></button>
+                <a href="javascrip:;">Voltar para a pesquisa</a>
+            </div>
+        </div>
+    </form>
 </div>
 
