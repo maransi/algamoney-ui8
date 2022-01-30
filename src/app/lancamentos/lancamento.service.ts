@@ -84,4 +84,17 @@ export class LancamentoService {
             .then( () => null );
   }
 
+  adicionar( lancamento: Lancamento): Promise<Lancamento>{
+    const headers = new Headers();
+
+    headers.append("Authorization","Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==");
+    headers.append("Content-Type", "application/json");
+
+    return this.http.post( `${this.lancamentoUrl}`,
+                            JSON.stringify( lancamento ),
+                            { headers })
+                    .toPromise()
+                    .then( response => response.json() );
+  }
+
 }

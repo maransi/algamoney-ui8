@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Pessoa } from 'app/core/model';
 
 @Component({
   selector: 'app-pessoa-cadastro',
@@ -6,9 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pessoa-cadastro.component.css']
 })
 export class PessoaCadastroComponent implements OnInit {
-
   estados = [
-              {label: 'Selecione', value: ''},
               {label: 'AC', value: 'Acre'},
               {label: 'AL', value: 'Alagoas' },
               {label: 'AP', value: 'Amapá' },
@@ -38,14 +38,17 @@ export class PessoaCadastroComponent implements OnInit {
               {label: 'TO', value: 'Tocantins' }
             ];
 
-    pessoa = { nome: '', cidade: '', estado: '', status: '' };
-
+//    pessoa = { nome: '', cidade: '', estado: '', status: '' };
+  pessoa = new Pessoa();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  salvar(form: FormControl){
+    console.log( this.pessoa );
+  }
 
 
 }

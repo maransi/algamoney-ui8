@@ -1,9 +1,20 @@
 export class Pessoa{
     codigo: number;
+
 }
 
 export class Categoria{
     codigo: number;
+    nome: string;
+    logradouro: string;
+    numero: number;
+    complemento: string;
+    bairro: string;
+    cep: string;
+    cidade: string;
+    estado: string;
+    ativo: number;
+
 }
 
 export class Lancamento{
