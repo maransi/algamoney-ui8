@@ -34,7 +34,7 @@
         id="logradouro"
         pInputText
         autocomplete="off"
-        [(ngModel)]="pessoa.logradouro"
+        [(ngModel)]="pessoa.endereco.logradouro"
         #logradouro="ngModel"
         required
         minlength=5>
@@ -54,7 +54,7 @@
         id="numero"
         pInputText
         autocomplete="off"
-        [(ngModel)]="pessoa.numero"
+        [(ngModel)]="pessoa.endereco.numero"
         #numero="ngModel"
         required
         minlength=1>
@@ -75,7 +75,7 @@
         id="complemento"
         pInputText
         autocomplete="off"
-        [(ngModel)]="pessoa.complemento"
+        [(ngModel)]="pessoa.endereco.complemento"
         #complemento="ngModel">
       </div>
       
@@ -86,7 +86,7 @@
         id="bairro"
         pInputText
         autocomplete="off"
-        [(ngModel)]="pessoa.bairro"
+        [(ngModel)]="pessoa.endereco.bairro"
         #bairro="ngModel"
         required
         minlength=5>
@@ -106,7 +106,7 @@
         id="cidade"
         pInputText
         autocomplete="off"
-        [(ngModel)]="pessoa.cidade"
+        [(ngModel)]="pessoa.endereco.cidade"
         #cidade="ngModel"
         required
         minlength=5>
@@ -125,7 +125,7 @@
         id="cep"
         name="cep"
         autocomplete="off"
-        [(ngModel)]="pessoa.cep"
+        [(ngModel)]="pessoa.endereco.cep"
         #cep="ngModel"
         required
         minlength=5></p-inputMask>
@@ -146,7 +146,7 @@
                     [filter]="true"
                     name="estado"
                     id="estado"
-                    [(ngModel)]="pessoa.estado"
+                    [(ngModel)]="pessoa.endereco.estado"
                     required
                     #estado="ngModel"></p-dropdown>
       </div>

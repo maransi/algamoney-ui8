@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ErrorHandler, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Pessoa } from 'app/core/model';
+import { Endereco, Pessoa } from 'app/core/model';
+import { ToastyService } from 'ng2-toasty';
+import { PessoaService } from '../pessoa.service';
 
 @Component({
   selector: 'app-pessoa-cadastro',
@@ -41,13 +43,26 @@ export class PessoaCadastroComponent implements OnInit {
 //    pessoa = { nome: '', cidade: '', estado: '', status: '' };
   pessoa = new Pessoa();
 
-  constructor() { }
+  constructor(@Inject( PessoaService ) private pessoaService,
+              @Inject( ToastyService) private toasty,
+              @Inject( ErrorHandler ) private errorHandler) { }
 
   ngOnInit() {
+    this.pessoa.endereco = new Endereco();
   }
 
   salvar(form: FormControl){
     console.log( this.pessoa );
+    this.pessoaService.adicionar( this.pessoa )
+        .then( () => {
+          this.toasty.success("Pessoa adicionada com sucesso!!!");
+        })
+        .catch( erro => this.errorHandler.handle( erro ));
+
+    form.reset();
+
+    this.pessoa = new Pessoa();
+    this.pessoa.endereco = new Endereco();
   }
 
 

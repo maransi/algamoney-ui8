@@ -1,6 +1,4 @@
-export class Pessoa{
-    codigo: number;
-    nome: string;
+export class Endereco{
     logradouro: string;
     numero: number;
     complemento: string;
@@ -8,7 +6,13 @@ export class Pessoa{
     cep: string;
     cidade: string;
     estado: string;
-    ativo: number;
+}
+
+export class Pessoa{
+    codigo: number;
+    nome: string;
+    endereco: Endereco;
+    ativo = true;
 }    
 
 export class Categoria{

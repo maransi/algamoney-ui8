@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Lancamento } from 'app/domain/lancamento';
 import { URLSearchParams} from '@angular/http';
 import * as moment from 'moment';
+import { Pessoa } from 'app/core/model';
 
 export class PessoaFiltro{
   nome: string;
@@ -54,7 +55,7 @@ export class PessoaService {
   listarTodas(): Promise<any>{
     const headers = new Headers();
 
-    headers.append("Authorization", "Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==")
+    headers.append("Authorization", "Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==");
 
 
     return this.http.get(this.pessoaUrl, { headers })
@@ -66,5 +67,18 @@ export class PessoaService {
                                     return pessoas;
               });
   }
+
+  adicionar( pessoa: Pessoa ): Promise<Pessoa>{
+    const headers = new Headers();
+
+    headers.append("Authorization", "Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==");
+    headers.append("Content-Type","application/json");
+
+    return this.http.post(this.pessoaUrl, JSON.stringify( pessoa ), { headers })
+              .toPromise()
+              .then( response => response.json() );
+
+  }
+
 
 }
