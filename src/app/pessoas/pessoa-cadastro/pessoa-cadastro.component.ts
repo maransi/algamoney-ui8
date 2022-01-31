@@ -49,20 +49,23 @@ export class PessoaCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.pessoa.endereco = new Endereco();
+    this.pessoa.ativo = false;
   }
 
   salvar(form: FormControl){
+    console.log( form );
     console.log( this.pessoa );
     this.pessoaService.adicionar( this.pessoa )
         .then( () => {
           this.toasty.success("Pessoa adicionada com sucesso!!!");
         })
-        .catch( erro => this.errorHandler.handle( erro ));
+        .catch( erro => this.errorHandler.handleError( erro ));
 
     form.reset();
 
     this.pessoa = new Pessoa();
     this.pessoa.endereco = new Endereco();
+    this.pessoa.ativo = false;
   }
 
 

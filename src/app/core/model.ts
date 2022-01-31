@@ -12,7 +12,7 @@ export class Pessoa{
     codigo: number;
     nome: string;
     endereco: Endereco;
-    ativo = true;
+    ativo: boolean; // = true;
 }    
 
 export class Categoria{

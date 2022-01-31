@@ -8,13 +8,15 @@ import { ToastyModule } from 'ng2-toasty';
 import { ConfirmationService, ConfirmDialogModule } from 'primeng/primeng';
 import { PessoaService } from 'app/pessoas/pessoa.service';
 import { LancamentoService } from 'app/lancamentos/lancamento.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ConfirmDialogModule,
-    ToastyModule.forRoot()
+    ToastyModule.forRoot(),
+    RouterModule
   ],
   declarations: [
     NavbarComponent

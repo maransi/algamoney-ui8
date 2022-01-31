@@ -20,6 +20,7 @@ import { LancamentoService } from './lancamento.service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoriaService } from './categoria/categoria.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { CategoriaService } from './categoria/categoria.service';
     InputMaskModule,
     SharedModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   declarations: [
     LancamentoCadastroComponent,

@@ -150,11 +150,12 @@
                     required
                     #estado="ngModel"></p-dropdown>
       </div>
-      <!--
       <div class="ui-g-1 ui-md-2 ui-sm-12 ui-fluid" style="padding: 25px;">
+        <!--
         <p-checkbox name="status" id="status" value="ATIVO" label="Ativo"></p-checkbox>
+      -->    
+        <p-checkbox name="ativo" label="Ativo?" [(ngModel)]="ativo" binary="true"></p-checkbox>
       </div>
-    -->    
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar"></button>
         <button pButton type="button" label="Novo" class="ui-button-info"></button>

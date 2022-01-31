@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
 import { Lancamento } from 'app/core/model';
 import { PessoaService } from 'app/pessoas/pessoa.service';
@@ -27,9 +28,12 @@ export class LancamentoCadastroComponent implements OnInit {
                 @Inject(PessoaService) private pessoaService,
                 @Inject( ErrorHandlerService) private errorHandler,
                 @Inject( ToastyService ) private toasty,
-                @Inject( LancamentoService ) private lancamentoService) { }
+                @Inject( LancamentoService ) private lancamentoService,
+                @Inject( ActivatedRoute ) private route) { }
 
   ngOnInit() {
+    console.log( this.route.snapshot.params['codigo'] );
+
     this.carregarCategorias();
     this.carregarPessoas();
   }
@@ -59,12 +63,13 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamentoService.adicionar( this.lancamento )
                           .then( () => { 
                                         this.toasty.success( "Lançamento adicionado com sucesso!!!"); 
+
+                                        form.reset();
+
+                                        this.lancamento = new Lancamento();
                                       })
                           .catch( erro => this.errorHandler.handle( erro ));
 
-    form.reset();
-
-    this.lancamento = new Lancamento();
   }
 
 }

@@ -109,9 +109,9 @@
                         [(ngModel)]="lancamento.observacao"></textarea>              
             </div>
             <div class="ui-g-12">
-                <button pButton type="submit" label="Salvar"></button>
+                <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
                 <button pButton type="button" label="Novo" class="ui-button-info"></button>
-                <a href="javascrip:;">Voltar para a pesquisa</a>
+                <a routerLink="/lancamentos">Voltar para a pesquisa</a>
             </div>
         </div>
     </form>
