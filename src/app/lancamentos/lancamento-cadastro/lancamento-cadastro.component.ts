@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
 import { Lancamento } from 'app/core/model';
 import { PessoaService } from 'app/pessoas/pessoa.service';
@@ -29,13 +29,27 @@ export class LancamentoCadastroComponent implements OnInit {
                 @Inject( ErrorHandlerService) private errorHandler,
                 @Inject( ToastyService ) private toasty,
                 @Inject( LancamentoService ) private lancamentoService,
-                @Inject( ActivatedRoute ) private route) { }
+                @Inject( ActivatedRoute ) private route,
+                @Inject( Router ) private router ) { }
 
   ngOnInit() {
-    console.log( this.route.snapshot.params['codigo'] );
+//    console.log( this.route.snapshot.params['codigo'] );
+
+    const codigoLancamento = this.route.snapshot.params['codigo'];
+
+    if (codigoLancamento){
+      this.carregarLancamento( codigoLancamento );
+    }
 
     this.carregarCategorias();
     this.carregarPessoas();
+  }
+
+
+  carregarLancamento( codigoLancamento: number){
+    this.lancamentoService.buscarPorCodigo( codigoLancamento )
+          .then( lancamento => this.lancamento = lancamento )
+          .catch( erro => this.errorHandler.handle( erro ));
   }
 
   carregarCategorias() {
@@ -59,17 +73,48 @@ export class LancamentoCadastroComponent implements OnInit {
         .catch( erro => this.errorHandler.handle(erro));
   }
 
-  salvar( form: FormControl){
+  salvar( form: FormControl ){
+    if ( this.editando ){
+      this.atualizarLancamento( form );
+    }else {
+      this.adicionarLancamento( form );
+    }
+  }
+
+  atualizarLancamento( form: FormControl ){
+    this.lancamentoService.atualizar( this.lancamento )
+                  .then( lancamento => {
+                    this.lancamento = lancamento;
+                    this.toasty.success( "Lancamento alterado com sucesso!!!");
+                  })
+                  .catch( error => this.errorHandler.handle( error ));
+  }
+
+
+  adicionarLancamento( form: FormControl){
     this.lancamentoService.adicionar( this.lancamento )
-                          .then( () => { 
+                          .then( lancamentoAdicionado => { 
                                         this.toasty.success( "Lançamento adicionado com sucesso!!!"); 
-
+/*
                                         form.reset();
-
                                         this.lancamento = new Lancamento();
+*/
+                                        this.router.navigate(["/lancamentos", lancamentoAdicionado.codigo ])
                                       })
                           .catch( erro => this.errorHandler.handle( erro ));
 
+  }
+
+  get editando(){
+    return Boolean( this.lancamento.codigo );
+  }
+
+  novo( form: FormControl){
+    form.reset();
+
+    setTimeout( function(){
+      this.lancamento = new Lancamento();
+    }.bind(this),1);
   }
 
 }
