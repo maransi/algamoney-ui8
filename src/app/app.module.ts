@@ -27,15 +27,8 @@ import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa
 import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoaCadastroComponent } from './pessoas/pessoa-cadastro/pessoa-cadastro.component';
-// import { ToastyModule } from 'ng2-toasty';
-
-const routes: Routes = [
-  { path: "lancamentos", component: LancamentosPesquisaComponent}  ,
-  { path: "lancamentos/novo", component: LancamentoCadastroComponent},
-  { path: "pessoas", component: PessoasPesquisaComponent},
-  { path: "pessoas/novo", component: PessoaCadastroComponent},
-  { path: "lancamentos/:codigo", component: LancamentoCadastroComponent }
-]
+import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
+import { AppRoutingModule } from './app-roting.module';
 
 
 @NgModule({
@@ -66,7 +59,7 @@ const routes: Routes = [
     PessoasModule,
     CoreModule,
     HttpModule,
-    RouterModule.forRoot( routes )
+    AppRoutingModule
   ],
   providers: [
   ],

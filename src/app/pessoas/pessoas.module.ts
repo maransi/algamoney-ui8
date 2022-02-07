@@ -36,8 +36,8 @@ import { HttpModule } from '@angular/http';
     PessoasPesquisaComponent
   ],
   exports: [
-    PessoaCadastroComponent,
-    PessoasPesquisaComponent
+//    PessoaCadastroComponent,
+//    PessoasPesquisaComponent
   ],
   providers: [PessoaService]
 })

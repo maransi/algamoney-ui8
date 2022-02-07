@@ -21,6 +21,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoriaService } from './categoria/categoria.service';
 import { RouterModule } from '@angular/router';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { RouterModule } from '@angular/router';
     SharedModule,
     HttpModule,
     HttpClientModule,
-    RouterModule
+//    RouterModule,
+    LancamentosRoutingModule
   ],
   declarations: [
     LancamentoCadastroComponent,
@@ -50,8 +52,6 @@ import { RouterModule } from '@angular/router';
     LancamentosGridComponent
   ],
   exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
   ],
   providers: [LancamentoService, CategoriaService]
 })

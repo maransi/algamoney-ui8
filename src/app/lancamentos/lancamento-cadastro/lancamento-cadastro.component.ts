@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from 'app/core/error-handler.service';
 import { Lancamento } from 'app/core/model';
@@ -30,7 +31,8 @@ export class LancamentoCadastroComponent implements OnInit {
                 @Inject( ToastyService ) private toasty,
                 @Inject( LancamentoService ) private lancamentoService,
                 @Inject( ActivatedRoute ) private route,
-                @Inject( Router ) private router ) { }
+                @Inject( Router ) private router,
+                @Inject( Title ) private title ) { }
 
   ngOnInit() {
 //    console.log( this.route.snapshot.params['codigo'] );
@@ -43,12 +45,19 @@ export class LancamentoCadastroComponent implements OnInit {
 
     this.carregarCategorias();
     this.carregarPessoas();
+    this.title.setTitle("Cadastro de Lançamento");
   }
 
+  atualizarTituloEdicao(){
+    this.title.setTitle( `Edição de Lançamento: ${this.lancamento.descricao}`);
+  }
 
   carregarLancamento( codigoLancamento: number){
     this.lancamentoService.buscarPorCodigo( codigoLancamento )
-          .then( lancamento => this.lancamento = lancamento )
+          .then( lancamento => {
+                      this.lancamento = lancamento;
+                      this.atualizarTituloEdicao();
+           } )
           .catch( erro => this.errorHandler.handle( erro ));
   }
 
@@ -86,6 +95,7 @@ export class LancamentoCadastroComponent implements OnInit {
                   .then( lancamento => {
                     this.lancamento = lancamento;
                     this.toasty.success( "Lancamento alterado com sucesso!!!");
+                    this.atualizarTituloEdicao();
                   })
                   .catch( error => this.errorHandler.handle( error ));
   }
