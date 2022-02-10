@@ -39,6 +39,7 @@ export class LancamentoService {
     const params = new URLSearchParams();
 
     headers.append("Authorization","Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==");
+//    headers.append("Authorization","Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNjQ0NDQ1MDcxLCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI3ZjYwZDE4My0yYmJjLTQ3ZTctOGMwYi05MjI3MGJjOGFmNGMiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.N6oIMnpLwxGkkDqVU-HDJuFzfUv-ysSfG-K1DkSRhQY");
 
     params.set("page", filtro.pagina.toString() );
     params.set("size", filtro.itensPorPagina.toString());

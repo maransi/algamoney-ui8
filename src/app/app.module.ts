@@ -29,6 +29,7 @@ import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pes
 import { PessoaCadastroComponent } from './pessoas/pessoa-cadastro/pessoa-cadastro.component';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 import { AppRoutingModule } from './app-roting.module';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { AppRoutingModule } from './app-roting.module';
     PessoasModule,
     CoreModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SegurancaModule
   ],
   providers: [
   ],

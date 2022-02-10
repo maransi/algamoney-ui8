@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastyConfig } from 'ng2-toasty';
 
 @Component({
@@ -13,8 +14,14 @@ export class AppComponent {
   preco: Number = 123456.66;
   troco: Number= 105500.01;
 
-  constructor( private toastyConfig: ToastyConfig ){
+  constructor( private toastyConfig: ToastyConfig,
+              @Inject( Router ) private router ){
     this.toastyConfig.theme = "bootstrap";
   }
+
+  exibindoNavbar(): Boolean{
+    return this.router.url !== "/login";
+  }
+
 
 }
