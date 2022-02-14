@@ -11,6 +11,7 @@ import { LancamentoService } from 'app/lancamentos/lancamento.service';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from 'app/seguranca/auth.service';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { Title } from '@angular/platform-browser';
               ConfirmationService,
               ErrorHandlerService,
               {provide: LOCALE_ID, useValue: 'pt-BR'},
-              Title]
+              Title,
+              AuthService]
 })
 export class CoreModule { }
