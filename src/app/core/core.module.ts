@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from 'app/seguranca/auth.service';
+import { JwtHelper } from 'angular2-jwt';
 
 @NgModule({
   imports: [
@@ -37,6 +38,8 @@ import { AuthService } from 'app/seguranca/auth.service';
               ErrorHandlerService,
               {provide: LOCALE_ID, useValue: 'pt-BR'},
               Title,
-              AuthService]
+              AuthService,
+              JwtHelper
+            ]
 })
 export class CoreModule { }

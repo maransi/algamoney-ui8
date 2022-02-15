@@ -30,7 +30,11 @@
 					</div>
 				</div>
 				<p-footer>
-					<button pButton type="button" label="Login" class="ui-button-info" (click)="login(usuario.value, senha.value) "></button>
+					<button pButton 
+							type="button" 
+							label="Login" 
+							class="ui-button-info" 
+							(click)="login(usuario.value, senha.value); senha.value= ''; "></button>
 					<button pButton type="button" icon="fa-plus" label="Registrar" class="ui-button-info"></button>
 				</p-footer>
 			</p-panel>	
