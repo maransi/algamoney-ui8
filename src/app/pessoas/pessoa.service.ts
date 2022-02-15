@@ -6,6 +6,7 @@ import { Lancamento } from 'app/domain/lancamento';
 import { URLSearchParams} from '@angular/http';
 import * as moment from 'moment';
 import { Pessoa } from 'app/core/model';
+import { AuthHttp } from 'angular2-jwt';
 
 export class PessoaFiltro{
   nome: string;
@@ -20,15 +21,12 @@ export class PessoaService {
 
   pessoaUrl = 'http://localhost:8080/pessoas';
 
-  constructor( private http: Http) { }
+  constructor( private http: AuthHttp) { }
 
   pesquisar( filtro: PessoaFiltro ): Promise<any>{
 
-    const headers: Headers = new Headers();
 
     const params = new URLSearchParams();
-
-    headers.append("Authorization","Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==");
 
     params.set("page", filtro.pagina.toString() );
     params.set("size", filtro.itensPorPagina.toString());
@@ -37,7 +35,7 @@ export class PessoaService {
       params.set("nome", filtro.nome );
     }
 
-    return this.http.get(`${this.pessoaUrl}?resumo`, { headers: headers, search: params  })        // Pode ser passado somente { headers }
+    return this.http.get(`${this.pessoaUrl}?resumo`, { search: params  })        // Pode ser passado somente { headers }
             .toPromise()
             .then( response => {
                             const responseJson = response.json();
@@ -53,12 +51,7 @@ export class PessoaService {
   }
 
   listarTodas(): Promise<any>{
-    const headers = new Headers();
-
-    headers.append("Authorization", "Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==");
-
-
-    return this.http.get(this.pessoaUrl, { headers })
+    return this.http.get(this.pessoaUrl)
               .toPromise()
               .then( response => {
                                     const responseJson = response.json()
@@ -69,12 +62,7 @@ export class PessoaService {
   }
 
   adicionar( pessoa: Pessoa ): Promise<Pessoa>{
-    const headers = new Headers();
-
-    headers.append("Authorization", "Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==");
-    headers.append("Content-Type","application/json");
-
-    return this.http.post(this.pessoaUrl, JSON.stringify( pessoa ), { headers })
+    return this.http.post(this.pessoaUrl, JSON.stringify( pessoa ) )
               .toPromise()
               .then( response => response.json() );
 
